@@ -1,6 +1,4 @@
 // File: backend/server.js
-// Purpose: Main server entry point
-
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -33,13 +31,15 @@ mongoose.connect(process.env.MONGODB_URI)
 const transactionRoutes = require('./routes/transactions');
 const userRoutes = require('./routes/users');
 const fraudRoutes = require('./routes/fraudCases');
-const dashboardRoutes = require('./routes/dashboard'); // New dashboard routes
+const dashboardRoutes = require('./routes/dashboard');
+const authRoutes = require('./routes/auth'); // Add auth routes
 
 // Use routes
 app.use('/api/transactions', transactionRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/fraud', fraudRoutes);
-app.use('/api/dashboard', dashboardRoutes); // Add dashboard routes
+app.use('/api/dashboard', dashboardRoutes);
+app.use('/api/auth', authRoutes); // Mount auth routes
 
 // Basic route
 app.get('/', (req, res) => {
